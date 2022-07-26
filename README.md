@@ -43,6 +43,25 @@ Next we will configure a new security group for the near node and open port 2456
 ![image](https://user-images.githubusercontent.com/74465527/181062641-a34caa21-df07-4825-b371-d8e049f69a8e.png)
 
 
+Set the storgare to 500 GB single disk as shown below:
+
+![image](https://user-images.githubusercontent.com/74465527/181063100-6a99bec7-799d-4b52-b9b3-6c892aca7a4f.png)
+
+
+Review your setting and launch the new instance:
+
+![image](https://user-images.githubusercontent.com/74465527/181063280-08eb8a8b-02b9-4fac-9bbc-a35e3ee3b166.png)
+
+Once launched you can access view the new servers information by clicking view instances and going to the new server:
+
+![image](https://user-images.githubusercontent.com/74465527/181063473-d47ae431-e33c-4e7d-b2e7-aa93f64b072b.png)
+
+In this example we will use Mobaxterm as the terminal software. Setting are as follows for this example:
+![image](https://user-images.githubusercontent.com/74465527/181063839-bc6ac809-7766-4f31-b174-d83b7ff387cb.png)
+
+Click okay and double click the new entry and you should now connect to the new near node:
+![image](https://user-images.githubusercontent.com/74465527/181064182-6a81c42b-96c7-499b-a851-04ffadc27fdd.png)
+
 
 #### Install required software & set the configuration
 
@@ -59,5 +78,5 @@ lscpu | grep -P '(?=.*avx )(?=.*sse4.2 )(?=.*cx16 )(?=.*popcnt )' > /dev/null \
 
 ##### Install developer tools:
 ```
-sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python-is-python3 docker.io protobuf-compiler libssl-dev pkg-config clang llvm cargo
+sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python-is-python3 docker.io protobuf-compiler libssl-dev pkg-config clang llvm cargo ntp
 ```
