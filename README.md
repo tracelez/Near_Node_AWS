@@ -345,3 +345,7 @@ Command:
 ```
 journalctl -n 100 -f -u neard | ccze -A
 ```
+
+##3# Congrulations your AWS setup is complete; you can now mount your stake pool:
+
+[Mount your Staking Pool](./003.md).
