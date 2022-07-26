@@ -444,10 +444,6 @@ journalctl -n 100 -f -u neard | ccze -A
 ```
 ![image](https://user-images.githubusercontent.com/74465527/181078099-707fec20-8fb9-4971-a276-204eeee9cdeb.png)
 
-## Conclusion 
-
-This completes your initial AWS configuration. At this point you can continue on with the Stake Wars III instrucitions to mount your staking pool and stake your node. 
-
 
 ## Mounting a staking pool
 
@@ -627,3 +623,7 @@ Command:
 ```
 curl -s -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' 127.0.0.1:3030 | jq -c '.result.current_validators[] | select(.account_id | contains ("POOL_ID"))'
 ```
+
+### Congraulations!! Your AWS Near Chuck Node installtion is Complete
+
+
