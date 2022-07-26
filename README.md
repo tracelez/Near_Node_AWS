@@ -9,6 +9,8 @@ Wallet: https://wallet.shardnet.near.org/
 
 Explorer: https://explorer.shardnet.near.org/ 
 
+Mobatek:  https://www.mobatek.net/
+
 
 #### Server Requirements
 Please see the hardware requirement below:
