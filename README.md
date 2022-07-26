@@ -52,7 +52,7 @@ Review your setting and launch the new instance:
 
 ![image](https://user-images.githubusercontent.com/74465527/181063280-08eb8a8b-02b9-4fac-9bbc-a35e3ee3b166.png)
 
-Once launched you can access view the new servers information by clicking view instances and going to the new server:
+Once launched you can access view the new servers information by clicking instances and going to the new server:
 
 ![image](https://user-images.githubusercontent.com/74465527/181063473-d47ae431-e33c-4e7d-b2e7-aa93f64b072b.png)
 
@@ -152,7 +152,7 @@ In order to work properly, the NEAR node requires a working directory and a coup
 
 This command will create the directory structure and will generate `config.json`, `node_key.json`, and `genesis.json` on the network you have passed. 
 
-- `config.json` - Configuration parameters which are responsive for how the node will work. The config.json contains needed information for a node to run on the network, how to communicate with peers, and how to reach consensus. Although some options are configurable. In general validators have opted to use the default config.json provided.
+- `config.json` - Configuration parameters which are responsible for how the node will work. The config.json contains needed information for a node to run on the network, how to communicate with peers, and how to reach consensus. Although some options are configurable. In general validators have opted to use the default config.json provided.
 
 - `genesis.json` - A file with all the data the network started with at genesis. This contains initial accounts, contracts, access keys, and other records which represents the initial state of the blockchain. The genesis.json file is a snapshot of the network state at a point in time. In contacts accounts, balances, active validators, and other information about the network. 
 
@@ -163,7 +163,7 @@ This command will create the directory structure and will generate `config.json`
 #### Replace the `config.json`
 
 From the generated `config.json`, there two parameters to modify:
-- `boot_nodes`: If you had not specify the boot nodes to use during init in Step 3, the generated `config.json` shows an empty array, so we will need to replace it with a full one specifying the boot nodes.
+- `boot_nodes`: If you had not specified the boot nodes to use during init in Step 3, the generated `config.json` shows an empty array, replace it specifying the boot nodes.
 - `tracked_shards`: In the generated `config.json`, this field is an empty. You will have to replace it to `"tracked_shards": [0]`
 
 ```
