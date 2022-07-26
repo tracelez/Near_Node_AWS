@@ -344,7 +344,6 @@ Command:
 
 ```
 journalctl -n 100 -f -u neard | ccze -A
-
 ```
 ![image](https://user-images.githubusercontent.com/74465527/181078099-707fec20-8fb9-4971-a276-204eeee9cdeb.png)
 
