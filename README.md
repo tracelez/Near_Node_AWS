@@ -297,10 +297,10 @@ Description=NEARd Daemon Service
 
 [Service]
 Type=simple
-User=<USER>
+User=ubuntu
 #Group=near
-WorkingDirectory=/home/<USER>/.near
-ExecStart=/home/<USER>/nearcore/target/release/neard run
+WorkingDirectory=/home/ubuntu/.near
+ExecStart=/home/ubuntu/nearcore/target/release/neard run
 Restart=on-failure
 RestartSec=30
 KillSignal=SIGINT
