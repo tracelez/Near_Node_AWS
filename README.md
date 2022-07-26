@@ -346,6 +346,7 @@ Command:
 journalctl -n 100 -f -u neard | ccze -A
 ```
 
-### Congrulations your AWS setup is complete; you can now mount your staking pool:
+### Congrulations your AWS setup is complete; you can now mount your staking pool!
+
 
 [Mount your Staking Pool](https://github.com/near/stakewars-iii/blob/main/challenges/003.md)
