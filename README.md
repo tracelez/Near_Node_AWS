@@ -112,7 +112,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 You will see the following:
 
-![img](./images/rust.png)
+![image](https://user-images.githubusercontent.com/74465527/181067257-219d2295-c11b-466f-a105-1a3156c1d29e.png)
+
 
 Press 1 and press enter.
 
@@ -151,7 +152,7 @@ In order to work properly, the NEAR node requires a working directory and a coup
 ./target/release/neard --home ~/.near init --chain-id shardnet --download-genesis
 ```
 
-![img](./images/initialize.png)
+![image](https://user-images.githubusercontent.com/74465527/181067415-4718490f-2702-4153-a07b-5456bbb64bd7.png)
 
 This command will create the directory structure and will generate `config.json`, `node_key.json`, and `genesis.json` on the network you have passed. 
 
@@ -203,7 +204,7 @@ cd ~/nearcore
 ./target/release/neard --home ~/.near run
 ```
 
-![img](./images/download.png)
+![image](https://user-images.githubusercontent.com/74465527/181067749-57cb2ef0-e860-4965-8792-cf446c244baf.png)
 The node is now running you can see log outputs in your console. Your node should be find peers, download headers to 100%, and then download blocks.
 
 ----
@@ -226,19 +227,19 @@ near login
 1 – Copy the link in your browser
 
 
-![img](./images/1.png)
+![image](https://user-images.githubusercontent.com/74465527/181067949-41580187-5567-4fcd-9a1d-65d382fb40b8.png)
 
 2 – Grant Access to Near CLI
 
-![img](./images/3.png)
+![image](https://user-images.githubusercontent.com/74465527/181068051-d78c945b-0599-4edd-9873-3b7e4ff23d0a.png)
 
 3 – After Grant, you will see a page like this, go back to console
 
-![img](./images/4.png)
+![image](https://user-images.githubusercontent.com/74465527/181068113-775f287f-7df6-48f3-b304-818d0a4583fe.png)
 
 4 – Enter your wallet and press Enter
 
-![img](./images/5.png)
+![image](https://user-images.githubusercontent.com/74465527/181068273-4884fcff-898b-43e9-839d-1ec742cd805e.png)
 
 
 #####  Check the validator_key.json
@@ -287,7 +288,7 @@ target/release/neard run
 Command:
 
 ```
-sudo vi /etc/systemd/system/neard.service
+sudo nano /etc/systemd/system/neard.service
 ```
 Paste:
 
