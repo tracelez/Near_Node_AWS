@@ -346,15 +346,14 @@ Command:
 journalctl -n 100 -f -u neard | ccze -A
 
 ```
-![image](https://user-images.githubusercontent.com/74465527/181077749-583f3470-de03-44cc-850a-1907019e8aa0.png)
+![image](https://user-images.githubusercontent.com/74465527/181078099-707fec20-8fb9-4971-a276-204eeee9cdeb.png)
 
 ## Conclusion 
 
 This completes your initial AWS configuration. At this point you can continue on with the Stake Wars III instrucitions to mount your staking pool and stake your node. 
 
 
+## Let's mount your staking pool
 
-
-### Let's mount your staking pool
 
 [Mount your Staking Pool](https://github.com/near/stakewars-iii/blob/main/challenges/003.md)
