@@ -9,7 +9,7 @@ Wallet: https://wallet.shardnet.near.org/
 
 Explorer: https://explorer.shardnet.near.org/ 
 
-Mobatek:  https://www.mobatek.net/
+MobaXterm:  https://www.mobatek.net/
 
 
 #### Server Requirements
