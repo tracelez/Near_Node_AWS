@@ -65,90 +65,101 @@ Click okay and double click the new entry and you should now connect to the new 
 ![image](https://user-images.githubusercontent.com/74465527/181064182-6a81c42b-96c7-499b-a851-04ffadc27fdd.png)
 
 
-s://wallet.shardnet.near.org/
-Setup NEAR-CLI
+### Create a wallet
+https://wallet.shardnet.near.org/
+
+
+#### Setup NEAR-CLI
 
 NEAR-CLI is a command-line interface that communicates with the NEAR blockchain via remote procedure calls (RPC):
 
-    Setup and Installation NEAR CLI
-    View Validator Stats
+* Setup and Installation NEAR CLI
+* View Validator Stats
 
-    Note: For security reasons, it is recommended that NEAR-CLI be installed on a different computer than your validator node and that no full access keys be kept on your validator node.
+> Note: For security reasons, it is recommended that NEAR-CLI be installed on a different computer than your validator node and that no full access keys be kept on your validator node.
 
 First, let's make sure the linux machine is up-to-date.
-
+```
 sudo apt update && sudo apt upgrade -y
+```
 
-Install developer tools, Node.js, and npm
-
-First, we will start with installing Node.js and npm:
-
+##### Install developer tools, Node.js, and npm
+First, we will start with installing `Node.js` and `npm`:
+```
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -  
 sudo apt install build-essential nodejs
 PATH="$PATH"
+```
 
-Check Node.js and npm version:
-
+Check `Node.js` and `npm` version:
+```
 node -v
+```
+> v18.x.x
 
-    v18.x.x
-
+```
 npm -v
+```
+> 8.x.x
 
-    8.x.x
 
-Install NEAR-CLI
+##### Install NEAR-CLI
+Here's the Github Repository for NEAR CLI.: https://github.com/near/near-cli. To install NEAR-CLI, unless you are logged in as root, which is not recommended you will need to use `sudo` to install NEAR-CLI so that the near binary is saved to /usr/local/bin
 
-Here's the Github Repository for NEAR CLI.: https://github.com/near/near-cli. To install NEAR-CLI, unless you are logged in as root, which is not recommended you will need to use sudo to install NEAR-CLI so that the near binary is saved to /usr/local/bin
-
+```
 sudo npm install -g near-cli
-
-Validator Stats
+```
+### Validator Stats
 
 Now that NEAR-CLI is installed, let's test out the CLI and use the following commands to interact with the blockchain as well as to view validator stats. There are three reports used to monitor validator status:
-Environment
 
+
+###### Environment
 The environment will need to be set each time a new shell is launched to select the correct network.
 
 Networks:
-
-    GuildNet
-    TestNet
-    MainNet
-    Shardnet (this is the network we will use for Stake Wars)
+- GuildNet
+- TestNet
+- MainNet
+- **Shardnet** (this is the network we will use for Stake Wars)
 
 Command:
-
+```
 export NEAR_ENV=shardnet
+```
 
 You can also run this command to set the Near testnet Environment persistent:
-
+```
 echo 'export NEAR_ENV=shardnet' >> ~/.bashrc
+```
 
-NEAR CLI Commands Guide:
-Proposals
+#### NEAR CLI Commands Guide:
 
+###### Proposals
 A proposal by a validator indicates they would like to enter the validator set, in order for a proposal to be accepted it must meet the minimum seat price.
 
 Command:
-
+```
 near proposals
+```
 
-Validators Current
-
+###### Validators Current
 This shows a list of active validators in the current epoch, the number of blocks produced, number of blocks expected, and online rate. Used to monitor if a validator is having issues.
 
 Command:
-
+```
 near validators current
+```
 
-Validators Next
-
+###### Validators Next
 This shows validators whose proposal was accepted one epoch ago, and that will enter the validator set in the next epoch.
 
 Command:
-
+```
 near validators next
+```
+
+---
 
 
 #### Install required software & set the configuration
@@ -438,7 +449,120 @@ journalctl -n 100 -f -u neard | ccze -A
 This completes your initial AWS configuration. At this point you can continue on with the Stake Wars III instrucitions to mount your staking pool and stake your node. 
 
 
-### Let's mount your staking pool
+## Mounting a staking pool
+
+NEAR uses a staking pool factory with a whitelisted staking contract to ensure delegators’ funds are safe. In order to run a validator on NEAR, a staking pool must be deployed to a NEAR account and integrated into a NEAR validator node. Delegators must use a UI or the command line to stake to the pool. A staking pool is a smart contract that is deployed to a NEAR account.
+
+#### Deploy a Staking Pool Contract
+##### Deploy a Staking Pool
+Calls the staking pool factory, creates a new staking pool with the specified name, and deploys it to the indicated accountId.
+
+```
+near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool id>", "owner_id": "<accountId>", "stake_public_key": "<public key>", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="<accountId>" --amount=30 --gas=300000000000000
+```
+
+From the example above, you need to replace:
+
+* **Pool ID**: Staking pool name, the factory automatically adds its name to this parameter, creating {pool_id}.{staking_pool_factory}
+Examples:   
+
+- If pool id is stakewars will create : `stakewars.factory.shardnet.near`
+
+* **Owner ID**: The SHARDNET account (i.e. stakewares.shardnet.near) that will manage the staking pool.
+* **Public Key**: The public key in your **validator_key.json** file.
+* **5**: The fee the pool will charge (e.g. in this case 5 over 100 is 5% of fees).
+* **Account Id**: The SHARDNET account deploying and signing the mount tx.  Usually the same as the Owner ID.
+
+> Be sure to have at least 30 NEAR available, it is the minimum required for storage.
+Example : near call stake_wars_validator.factory.shardnet.near --amount 30 --accountId stakewars.shardnet.near --gas=300000000000000
 
 
-[Mount your Staking Pool](https://github.com/near/stakewars-iii/blob/main/challenges/003.md)
+To change the pool parameters, such as changing the amount of commission charged to 1% in the example below, use this command:
+```
+near call <pool_name> update_reward_fee_fraction '{"reward_fee_fraction": {"numerator": 1, "denominator": 100}}' --accountId <account_id> --gas=300000000000000
+```
+
+
+You will see something like this:
+
+![image](https://user-images.githubusercontent.com/74465527/181088989-e992ad26-55b1-4f84-ad2d-21e34a7aba79.png)
+
+If there is a “True” at the End. Your pool is created.
+
+**You have now configure your Staking pool.**
+
+Check your pool is now visible on https://explorer.shardnet.near.org/nodes/validators
+
+
+#### Transactions Guide
+##### Deposit and Stake NEAR
+
+Command:
+```
+near call <staking_pool_id> deposit_and_stake --amount <amount> --accountId <accountId> --gas=300000000000000
+```
+##### Unstake NEAR
+Amount in yoctoNEAR.
+
+Run the following command to unstake:
+```
+near call <staking_pool_id> unstake '{"amount": "<amount yoctoNEAR>"}' --accountId <accountId> --gas=300000000000000
+```
+To unstake all you can run this one:
+```
+near call <staking_pool_id> unstake_all --accountId <accountId> --gas=300000000000000
+```
+##### Withdraw
+
+Unstaking takes 2-3 epochs to complete, after that period you can withdraw in YoctoNEAR from pool.
+
+Command:
+```
+near call <staking_pool_id> withdraw '{"amount": "<amount yoctoNEAR>"}' --accountId <accountId> --gas=300000000000000
+```
+Command to withdraw all:
+```
+near call <staking_pool_id> withdraw_all --accountId <accountId> --gas=300000000000000
+```
+
+##### Ping
+A ping issues a new proposal and updates the staking balances for your delegators. A ping should be issued each epoch to keep reported rewards current.
+
+Command:
+```
+near call <staking_pool_id> ping '{}' --accountId <accountId> --gas=300000000000000
+```
+Balances
+Total Balance
+Command:
+```
+near view <staking_pool_id> get_account_total_balance '{"account_id": "<accountId>"}'
+```
+##### Staked Balance
+Command:
+```
+near view <staking_pool_id> get_account_staked_balance '{"account_id": "<accountId>"}'
+```
+##### Unstaked Balance
+Command:
+```
+near view <staking_pool_id> get_account_unstaked_balance '{"account_id": "<accountId>"}'
+```
+##### Available for Withdrawal
+You can only withdraw funds from a contract if they are unlocked.
+
+Command:
+```
+near view <staking_pool_id> is_account_unstaked_balance_available '{"account_id": "<accountId>"}'
+```
+##### Pause / Resume Staking
+###### Pause
+Command:
+```
+near call <staking_pool_id> pause_staking '{}' --accountId <accountId>
+```
+###### Resume
+Command:
+```
+near call <staking_pool_id> resume_staking '{}' --accountId <accountId>
+```
